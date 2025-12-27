@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Offer Letter</title>
+<link rel="stylesheet" href="offer.css">
+</head>
+<img src="offer-template.png" style="width:100%; margin-bottom:30px;">
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      INSEAD<br>
+      <small>The Business School for the World</small>
+    </div>
+
+    <div class="college-info">
+      Admission@myinsead.org<br>
+      1 Ayer Rajah Ave,<br>
+      Singapore 138676<br>
+      6799 5388
+    </div>
+  </div>
+
+  <!-- TITLE -->
+<h2>LETTER OF OFFER: <span id="courseName"></span></h2>
+
+<p><strong>Application ID:</strong> <span id="applicationId"></span></p>
+<p><strong>Course Duration:</strong> <span id="courseDuration"></span></p>
+<p><strong>Commencement Date:</strong> <span id="commencementDate"></span></p>
+
+<ul id="modulesList"></ul>
+
+  <!-- STUDENT BASIC INFO -->
+  <div class="student-info">
+<p><strong>Name:</strong> <span id="studentName"></span></p>
+<p><strong>Passport No:</strong> <span id="passportNo"></span></p>
+<p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+  </div>
+
+  <!-- BODY -->
+  <div class="section">
+    <p>
+      Dear {{STUDENT_NAME}},
+    </p>
+
+    <p>
+      The INSEAD School of Business is pleased to inform you that your application
+      to enrol in the above Course is successful. Please note however that your
+      application is further subject to the approval of your Student’s Pass
+      application by the Immigration and Checkpoints Authority (ICA) of Singapore.
+    </p>
+  </div>
+
+  <!-- ADMISSION DETAILS -->
+  <div class="section">
+    <p><strong>Your admission details are as follows:</strong></p>
+
+<h2>LETTER OF OFFER: <span id="courseName"></span></h2>
+
+<p><strong>Application ID:</strong> <span id="applicationId"></span></p>
+<p><strong>Course Duration:</strong> <span id="courseDuration"></span></p>
+<p><strong>Commencement Date:</strong> <span id="commencementDate"></span></p>
+
+<ul id="modulesList"></ul>
+  </div>
+
+  <!-- MODULES -->
+  <div class="section">
+    <p>
+      As you have completed the {{COURSE_NAME}} awarded by our College,
+      you will enjoy exemptions for the following modules:
+    </p>
+
+    <ul>
+      {{MODULES_LIST}}
+    </ul>
+
+    <p>
+      Accordingly, you will enjoy discounts on your course fees as indicated in Schedule B.
+    </p>
+  </div>
+
+  <!-- ENCLOSURES -->
+  <div class="section">
+    <p><strong>Kindly find enclosed the following documents:</strong></p>
+    <p>(a) Payment details</p>
+    <p>(b) Letter of Acceptance</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="section">
+    <p>
+      Should you wish to accept our offer, kindly execute the Letter of Acceptance
+      enclosed and return one signed copy to us.
+    </p>
+
+    <p>
+      In the meantime, please do not hesitate to contact us should you have any queries.
+      Thank you.
+    </p>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <div class="footer-note">
+    *This is a system-generated digital offer letter. No physical signature is required.*
+  </div>
+
+  <button id="downloadPdf" style="
+  margin-top:40px;
+  padding:10px 18px;
+  font-size:14px;
+  cursor:pointer;
+">
+    Download Offer Letter (PDF)
+  </button>
+
+  <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+  <script src="offer.js"></script>
+
+</body>
+
+</html>

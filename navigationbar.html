@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn">☰</button>
+  <h3>Student Dashboard</h3>
+</header>
+
+<!-- Dashboard Menu -->
+<div class="auth-menu" id="authMenu">
+  <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+  <a href="#" onclick="showSection('course')">Enrolled Course</a>
+  <a href="#" onclick="showSection('parents')">Parents</a>
+  <a href="#" onclick="showSection('events')">Events</a>
+  <a href="#" onclick="showSection('transport')">Transport</a>
+  <a href="#" onclick="showSection('offer')">Offer Letter</a>
+  <a href="#" onclick="showSection('idcard')">ID Card</a>
+  <a href="#" onclick="logout()">Logout</a>
+</div>
+
+<main id="content">
+  <h2>Welcome to INSEAD Dashboard</h2>
+</main>
+
+<script src="navigationbar.js"></script>
+</body>
+</html>
