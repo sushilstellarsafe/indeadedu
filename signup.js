@@ -237,24 +237,39 @@ localStorage.setItem("offer_commencement", document.getElementById("commencement
     alert("Signup completed successfully");
 
 
+// PHOTO SRC निकालना (safe way)
+let photoSrc = "";
+const imgTag = photoPreview.querySelector("img");
+if (imgTag) {
+  photoSrc = imgTag.src;
+}
 
 
+// ===== SAVE USER DATA FOR DASHBOARD =====
+const studentData = {
+  name: document.getElementById("studentName").value,
+  email: document.getElementById("email").value,
+  dob: document.getElementById("dob").value,
+  passport: document.getElementById("passportNo").value,
+program: document.getElementById("programType").options[
+  document.getElementById("programType").selectedIndex
+].text,
 
+course: document.getElementById("course").selectedIndex >= 0
+  ? document.getElementById("course").options[
+      document.getElementById("course").selectedIndex
+    ].text
+  : "",
 
+  duration: document.getElementById("courseDuration").value,
+  image: document.querySelector("#photoPreview img")?.src || ""
+};
 
+console.log("STUDENT DATA SAVED 👉", studentData);
 
-  // await fetch("/.netlify/functions/generate-offer", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({
-  //     name: document.getElementById("studentName").value,
-  //     email: document.getElementById("email").value,
-  //     program: document.getElementById("programType").value,
-  //     course: document.getElementById("course").value,
-  //     date: document.getElementById("commencementDate").value,
-  //     applicationId: document.getElementById("applicationId").value
-  //   })
-  // });
+localStorage.setItem("studentData", JSON.stringify(studentData));
+localStorage.setItem("isLoggedIn", "true");
+
 
 
 
@@ -298,7 +313,7 @@ localStorage.setItem(
 
 
     // ✅ REDIRECT
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return;
   });
 

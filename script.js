@@ -15,18 +15,19 @@ if (menuBtn && authMenu) {
     }
   });
 }
- 
+
 function renderMenu() {
   const loggedIn = localStorage.getItem("isLoggedIn");
 
   if (loggedIn === "true") {
     authMenu.innerHTML = `
-       <a href="#">Enrolled Course</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#">Enrolled Course</a>
       <a href="#">Parents</a>
       <a href="#">Events</a>
       <a href="#">Transport</a>
       <a href="offer.html">Offer Letter</a>
-      <a href="#">ID Card</a>
+      <a href="idcard.html">ID Card</a>
       <a href="#" onclick="logout()">Logout</a>
     `;
   } else {
@@ -107,12 +108,12 @@ document.querySelectorAll(".mobile-btn").forEach(btn => {
 
 
 
-  document.querySelectorAll(".mobile-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopImmediatePropagation(); // ⛔ very important
+document.querySelectorAll(".mobile-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopImmediatePropagation(); // ⛔ very important
 
-      const action = btn.dataset.action;
+    const action = btn.dataset.action;
 
     if (action === "menu") {
       document.querySelector(".menu-btn")?.click();

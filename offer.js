@@ -1,44 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const data = {
-    name: localStorage.getItem("offer_name"),
-    passport: localStorage.getItem("offer_passport"),
-    dob: localStorage.getItem("offer_dob"),
-    course: localStorage.getItem("offer_course"),
-    appId: localStorage.getItem("offer_application_id"),
-    duration: localStorage.getItem("offer_course_duration"),
-    start: localStorage.getItem("offer_commencement"),
-  };
+  // 🔹 DATA FROM LOCALSTORAGE
+  const name = localStorage.getItem("offer_name");
+  const passport = localStorage.getItem("offer_passport");
+  const dob = localStorage.getItem("offer_dob");
+  const course = localStorage.getItem("offer_course");
+  const duration = localStorage.getItem("offer_course_duration");
+  const applicationId = localStorage.getItem("offer_application_id");
+  const commencement = localStorage.getItem("offer_commencement");
 
-  // 🔴 अगर data नहीं मिला
-  if (!data.name) {
-    alert("No offer data found. Please signup again.");
+  if (!name || !course) {
+    alert("Offer data not found. Please signup again.");
     return;
   }
 
-  // ✅ Inject into HTML
-  document.getElementById("studentName").innerText = data.name;
-  document.getElementById("passportNo").innerText = data.passport;
-  document.getElementById("dob").innerText = data.dob;
-  document.getElementById("courseName").innerText = data.course;
-  document.getElementById("course").innerText = data.course;
-  document.getElementById("applicationId").innerText = data.appId;
-  document.getElementById("courseDuration").innerText = data.duration;
-  document.getElementById("commencementDate").innerText = data.start;
+  // 🔹 BASIC DETAILS
+  document.getElementById("offerDearName").innerText = name;
+  document.getElementById("offerName").innerText = name;
+  document.getElementById("offerPassport").innerText = passport;
+  document.getElementById("offerDob").innerText = dob;
 
-  // ✅ Modules example
-  const modules = [
-    "Strategy",
-    "Leadership",
-    "Finance",
-    "Marketing"
+  // 🔹 COURSE DETAILS
+  document.getElementById("offerCourseHeading").innerText = course;
+  document.getElementById("offerCourse").innerText = course;
+  document.getElementById("offerApplicationId").innerText = applicationId;
+  document.getElementById("offerDuration").innerText = duration;
+  document.getElementById("offerCommencement").innerText = commencement;
+
+  // 🔹 SUBJECTS (STATIC FOR NOW, DYNAMIC LATER)
+  const subjects = [
+    "Services Marketing and Customer Service",
+    "Events Management",
+    "Development of the Hospitality and Tourism Industry",
+    "Managing Food and Beverage Operations",
+    "Managing Housekeeping & Rooms Operations",
+    "Academic and Professional Development"
   ];
 
-  const ul = document.getElementById("modulesList");
-  modules.forEach(m => {
-    const li = document.createElement("li");
-    li.innerText = m;
-    ul.appendChild(li);
+  const subjectBox = document.getElementById("offerSubjects");
+  subjectBox.innerHTML = "";
+
+  subjects.forEach((sub, i) => {
+    subjectBox.innerHTML += `<p>(${String.fromCharCode(97 + i)}) ${sub},</p>`;
   });
+
+  // 🔹 ACCEPTANCE PAGE
+  document.getElementById("acceptName").innerText = name;
+  document.getElementById("acceptPassport").innerText = passport;
+  document.getElementById("acceptCourse").innerText = course;
 
 });

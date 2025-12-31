@@ -8,17 +8,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     supabaseKey
   );
 
-// const { data: { session } } = await supabase.auth.getSession();
-
-// if (session) {
-//   localStorage.setItem("isLoggedIn", "true");
-//   localStorage.setItem("userName", session.user.email);
-//   window.location.href = "index.html";
-//   return;
-// }
-
-
-
   const loginForm = document.getElementById("loginForm");
   const messageDiv = document.getElementById("message");
 
@@ -44,17 +33,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // ✅ LOGIN SUCCESS
+    /* =========================
+       🔥 IMPORTANT FIX 🔥
+       studentData को overwrite मत करो
+    ========================= */
+
+    let studentData = JSON.parse(localStorage.getItem("studentData"));
+
+    // अगर किसी कारण से data नहीं मिला
+    if (!studentData) {
+      studentData = { email };
+      localStorage.setItem("studentData", JSON.stringify(studentData));
+    }
+
+    // login flag
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("userName", email);
 
     messageDiv.textContent = "Login successful!";
     messageDiv.className = "message success";
 
-    // 👉 HOME PAGE
+    // 👉 DASHBOARD PAGE
     setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
+      window.location.href = "dashboard.html";
+    }, 800);
   });
 
 });

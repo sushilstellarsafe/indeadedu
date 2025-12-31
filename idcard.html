@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSEAD Student ID Card</title>
+    <link rel="stylesheet" href="idcard.css">
+</head>
+
+<body>
+    <div class="card-wrapper">
+        <!-- Front Side -->
+        <div class="id-card front">
+            <div class="header">
+                <div class="header-content">
+                    <div class="logo">INSEAD</div>
+                    <div class="school-text">
+                        THE BUSINESS SCHOOL<br>
+                        FOR THE WORLD
+                    </div>
+                </div>
+                <div class="header-accent"></div>
+            </div>
+
+            <div class="name-bar" id="cardName">STUDENT NAME</div>
+
+
+            <div class="card-body">
+                <div class="left-section">
+                    <div class="info-item">
+                        <div class="label">ROLL NO-</div>
+                        <div class="value">225689</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">ISSUE DATE-</div>
+                        <div class="value">09/2025</div>
+                    </div>
+                    <div class="barcode-container">
+                        <svg viewBox="0 0 120 40" class="barcode">
+                            <rect x="2" y="0" width="3" height="40" />
+                            <rect x="7" y="0" width="2" height="40" />
+                            <rect x="11" y="0" width="4" height="40" />
+                            <rect x="17" y="0" width="2" height="40" />
+                            <rect x="21" y="0" width="3" height="40" />
+                            <rect x="26" y="0" width="2" height="40" />
+                            <rect x="30" y="0" width="4" height="40" />
+                            <rect x="36" y="0" width="2" height="40" />
+                            <rect x="40" y="0" width="3" height="40" />
+                            <rect x="45" y="0" width="2" height="40" />
+                            <rect x="49" y="0" width="4" height="40" />
+                            <rect x="55" y="0" width="3" height="40" />
+                            <rect x="60" y="0" width="2" height="40" />
+                            <rect x="64" y="0" width="4" height="40" />
+                            <rect x="70" y="0" width="2" height="40" />
+                            <rect x="74" y="0" width="3" height="40" />
+                            <rect x="79" y="0" width="2" height="40" />
+                            <rect x="83" y="0" width="4" height="40" />
+                            <rect x="89" y="0" width="2" height="40" />
+                            <rect x="93" y="0" width="3" height="40" />
+                            <rect x="98" y="0" width="2" height="40" />
+                            <rect x="102" y="0" width="4" height="40" />
+                            <rect x="108" y="0" width="3" height="40" />
+                            <rect x="113" y="0" width="2" height="40" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="photo-box">
+                    <img id="cardPhoto" src="" alt="Student Photo">
+                </div>
+
+            </div>
+
+            <div class="footer">
+                <span>www.insead.edu</span>
+                <span>VALID TILL - 09/2026</span>
+            </div>
+        </div>
+
+        <!-- Back Side -->
+        <div class="id-card back">
+            <div class="back-header">
+                <h3>TERMS OF USE</h3>
+            </div>
+
+            <div class="back-text">
+                <p>Use your INSEAD student ID card for access to campus facilities, services, and events. Do not share
+                    or misuse it.</p>
+                <p>Student ID must be presented for campus entry, services, and discounts. Unauthorized use is
+                    prohibited and subject to penalty.</p>
+            </div>
+
+            <div class="back-header">
+                <h3>LOST AND FOUND</h3>
+            </div>
+
+            <div class="back-text">
+                <p>Report lost student ID cards immediately to campus security.</p>
+                <p>Found cards should be turned into the student services office.</p>
+            </div>
+
+            <div class="back-circle"></div>
+        </div>
+    </div>
+
+<script src="idcard.js"></script>
+
+</body>
+
+</html>

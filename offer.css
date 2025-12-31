@@ -1,63 +1,432 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #e8e8e8;
+    padding: 30px 20px;
+}
+
+/* Download Button */
+.download-btn-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.download-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #0052a3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+}
+
+.download-btn:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+/* PDF Container */
+.pdf-container {
+    max-width: 210mm;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.15);
+}
+
+/* Page Layout */
+.page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm 25mm;
+    background-color: white;
+    page-break-after: always;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.page:last-child {
+    margin-bottom: 0;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.header-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Content Area */
+.content {
+    font-size: 12pt;
+    line-height: 1.15;
+    color: #000;
+}
+
+/* Letter Heading - Center aligned */
+.letter-heading {
+    text-align: center;
+    margin-bottom: 12px;
+    font-size: 12pt;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* Dear line - Left aligned */
+.dear-line {
+    margin: 0 0 8px 0;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+/* Contact info - All right aligned */
+.contact-right-block {
+    text-align: right;
+    margin-bottom: 12px;
+}
+
+.contact-right-block p {
+    margin: 0;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+/* Name line */
+.name-line {
+    margin: 0 0 2px 0;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+/* Passport left, DOB right - same line */
+.passport-dob-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+/* Paragraphs */
+.para {
+    margin-bottom: 8px;
+    font-size: 12pt;
+    line-height: 1.15;
+    text-align: justify;
+}
+
+.note-para {
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+/* List Items */
+.list-items {
+    margin-left: 25px;
+    margin-bottom: 8px;
+}
+
+.list-items p {
+    margin-bottom: 0;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+/* Admission Table */
+.admission-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+}
+
+.admission-table td {
+    padding: 6px 8px;
+    border: 1px solid #000;
+    font-size: 12pt;
+    vertical-align: top;
+    line-height: 1.15;
+}
+
+.admission-table .label-col {
+    width: 38%;
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+/* Page Titles - Schedule B, C */
+.page-title {
+    text-align: center;
+    margin: 0 0 15px 0;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+/* Section Titles */
+.section-title {
+    margin: 15px 0 10px 0;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.payment-section {
+    margin-top: 20px;
+}
+
+/* Fees Tables */
+.fees-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+}
+
+.fees-table th {
+    background-color: #d9d9d9;
+    border: 1px solid #000;
+    padding: 6px 8px;
+    font-weight: bold;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+.fees-table td {
+    border: 1px solid #000;
+    padding: 5px 8px;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+.fees-table .total-row {
+    background-color: #f0f0f0;
+}
+
+.fees-table .small-text {
+    font-size: 10pt;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Instalment Table Column Widths */
+.instalment-table th:nth-child(1) {
+    width: 15%;
+}
+
+.instalment-table th:nth-child(2) {
+    width: 30%;
+}
+
+.instalment-table th:nth-child(3) {
+    width: 30%;
+}
+
+.instalment-table th:nth-child(4) {
+    width: 25%;
+}
+
+/* Bank Details Table */
+.bank-table {
+    width: 100%;
+    margin: 8px 0;
+    border-collapse: collapse;
+}
+
+.bank-table tr {
+    height: auto;
+}
+
+.bank-table td {
+    padding: 1px 0;
+    vertical-align: top;
+    font-size: 12pt;
+    line-height: 1.15;
+}
+
+.bank-table .bank-label {
+    width: 140px;
+    font-weight: bold;
+}
+
+/* Letter of Acceptance Page */
+.acceptance-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.acceptance-para {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.course-title {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 12pt;
+}
+
+/* Signature Blocks */
+.signature-block {
+    margin-top: 30px;
+}
+
+.guardian-block {
+    margin-top: 25px;
+}
+
+.sign-field {
+    margin-bottom: 20px;
+}
+
+.sign-label {
+    font-weight: bold;
+    font-size: 12pt;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.sign-line {
+    border-bottom: 1px solid #000;
+    min-height: 22px;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 2px;
+}
+
+.sign-value {
+    font-size: 12pt;
+}
+
+.sign-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.sign-half {
+    width: 48%;
+}
+
+.sign-line-short {
+    border-bottom: 1px solid #000;
+    min-height: 22px;
+    width: 100%;
+}
+
+/* Page Number */
+.page-number {
+    position: absolute;
+    bottom: 15mm;
+    right: 25mm;
+    font-size: 12pt;
+    color: #000;
+}
+
+/* Print Styles */
+@media print {
     body {
-      font-family: "Times New Roman", serif;
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 40px;
-      color: #000;
+        background-color: white;
+        padding: 0;
     }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 30px;
+    .download-btn-container {
+        display: none;
     }
 
-    .offer-header img {
-      width: 100%;
-      max-width: 100%;
-      display: block;
-      margin-bottom: 30px;
+    .pdf-container {
+        max-width: 100%;
+        box-shadow: none;
     }
 
-
-    .logo {
-      font-weight: bold;
-      font-size: 18px;
+    .page {
+        margin: 0;
+        padding: 20mm 25mm;
+        box-shadow: none;
+        page-break-after: always;
     }
 
-    .college-info {
-      text-align: right;
-      font-size: 12px;
+    .page:last-child {
+        page-break-after: auto;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 900px) {
+    body {
+        padding: 15px 10px;
     }
 
-    h2 {
-      text-align: center;
-      text-decoration: underline;
-      margin: 30px 0;
-      font-size: 16px;
+    .page {
+        width: 100%;
+        min-height: auto;
+        padding: 15mm 12mm;
     }
 
-    .student-info {
-      margin-bottom: 20px;
+    .content {
+        font-size: 11pt;
     }
 
-    .student-info strong {
-      display: inline-block;
-      width: 150px;
+    .fees-table,
+    .admission-table,
+    .bank-table {
+        font-size: 10pt;
     }
 
-    .section {
-      margin-bottom: 18px;
+    .fees-table th,
+    .fees-table td {
+        padding: 6px 8px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        padding: 10mm 8mm;
     }
 
-    ul {
-      margin-top: 5px;
+    .content {
+        font-size: 10pt;
     }
 
-    .footer-note {
-      margin-top: 40px;
-      font-size: 12px;
-      font-style: italic;
-      text-align: center;
+    .sign-row {
+        flex-direction: column;
+        gap: 15px;
     }
+
+    .sign-half {
+        width: 100%;
+    }
+}
