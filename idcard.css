@@ -368,3 +368,90 @@ body {
   font-size: 10px;
   z-index: 9999;     /* 🔥 SABSE UPAR */
 }
+
+
+
+/* ===== DOWNLOAD MODE FIX ===== */
+.download-mode .id-card {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.download-mode .header::after,
+.download-mode .id-card:hover {
+  animation: none !important;
+}
+
+.download-mode .barcode {
+  right: 0 !important;
+}
+
+.download-mode .value {
+  left: 70px !important;
+  bottom: 24px !important;
+}
+
+.download-mode .photo-box {
+  top: 70px !important;
+  right: 10px !important;
+}
+
+.download-mode .logo {
+  bottom: -18px !important;
+}
+
+
+/* ===== FIXED SIZE FOR DOWNLOAD ===== */
+.download-card {
+  width: 1050px;   /* exact ratio */
+  height: 660px;
+  border-radius: 30px;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.download-card * {
+  animation: none !important;
+}
+
+
+
+/* ===== CLEAN DOWNLOAD MODE ===== */
+.download-card {
+  width: 350px !important;
+  height: 220px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.download-card * {
+  animation: none !important;
+}
+
+
+
+/* ===== A4 PDF DOWNLOAD MODE ===== */
+.download-card {
+  width: 350px !important;
+  height: 220px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.download-card * {
+  animation: none !important;
+}
+
+
+/* ===== DOWNLOAD PHOTO ALIGNMENT FIX ===== */
+.download-mode .photo-box {
+  position: absolute !important;
+  top: 72px !important;
+  right: 10px !important;
+  width: 90px !important;
+  height: 110px !important;
+}
+
+.download-mode .photo-box img {
+  object-fit: cover !important;
+}
