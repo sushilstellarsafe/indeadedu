@@ -59,10 +59,13 @@ body {
     position: relative;
     margin-bottom: 30px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    page-break-after: always;
+    break-after: page;
 }
 
 .page:last-child {
     margin-bottom: 0;
+    page-break-after: auto;
 }
 
 /* Header Section */
@@ -84,6 +87,7 @@ body {
     font-size: 12pt;
     line-height: 1.15;
     color: #000;
+    min-height: 100%;
 }
 
 /* Letter Heading - Center aligned */
@@ -183,6 +187,7 @@ body {
     margin: 0 0 15px 0;
     font-size: 13pt;
     font-weight: bold;
+    text-decoration: underline;
 }
 
 /* Section Titles */
@@ -190,10 +195,15 @@ body {
     margin: 15px 0 10px 0;
     font-size: 12pt;
     font-weight: bold;
+    position: relative;
+    left: 275px;
+    text-decoration: underline;
 }
+
 
 .payment-section {
     margin-top: 20px;
+    text-decoration: underline;
 }
 
 /* Fees Tables */
@@ -285,6 +295,7 @@ body {
     margin-bottom: 20px;
     font-size: 12pt;
     font-weight: bold;
+    text-decoration: underline;
 }
 
 .acceptance-para {

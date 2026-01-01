@@ -1,33 +1,48 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Offer JS Loaded");
 
-  // 🔹 DATA FROM LOCALSTORAGE
-  const name = localStorage.getItem("offer_name");
-  const passport = localStorage.getItem("offer_passport");
-  const dob = localStorage.getItem("offer_dob");
-  const course = localStorage.getItem("offer_course");
-  const duration = localStorage.getItem("offer_course_duration");
-  const applicationId = localStorage.getItem("offer_application_id");
-  const commencement = localStorage.getItem("offer_commencement");
+  // 1️⃣ Check Supabase session
+  const { data: { session } } = await supabase.auth.getSession();
+  console.log("SESSION 👉", session);
 
-  if (!name || !course) {
+  if (!session) {
+    alert("Please login first");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const userId = session.user.id;
+
+  // 2️⃣ Fetch profile from Supabase
+  const { data, error } = await supabase
+    .from("student_profiles")
+    .select("*")
+    .eq("id", userId)
+    .maybeSingle();
+
+  console.log("PROFILE DATA 👉", data);
+
+  if (error || !data) {
     alert("Offer data not found. Please signup again.");
     return;
   }
 
-  // 🔹 BASIC DETAILS
-  document.getElementById("offerDearName").innerText = name;
-  document.getElementById("offerName").innerText = name;
-  document.getElementById("offerPassport").innerText = passport;
-  document.getElementById("offerDob").innerText = dob;
+  // 3️⃣ BASIC DETAILS
+  setText("offerDearName", data.name);
+  setText("offerName", data.name);
+  setText("offerPassport", data.passport);
+  setText("offerDob", data.dob);
 
-  // 🔹 COURSE DETAILS
-  document.getElementById("offerCourseHeading").innerText = course;
-  document.getElementById("offerCourse").innerText = course;
-  document.getElementById("offerApplicationId").innerText = applicationId;
-  document.getElementById("offerDuration").innerText = duration;
-  document.getElementById("offerCommencement").innerText = commencement;
+  // 4️⃣ COURSE DETAILS
+  setText("offerCourseHeading", data.course);
+  setText("offerCourse", data.course);
+  setText("offerDuration", data.duration);
 
-  // 🔹 SUBJECTS (STATIC FOR NOW, DYNAMIC LATER)
+  // OPTIONAL (agar DB me hai to)
+  setText("offerApplicationId", data.application_id);
+  setText("offerCommencement", data.commencement);
+
+  // 5️⃣ SUBJECTS (static for now)
   const subjects = [
     "Services Marketing and Customer Service",
     "Events Management",
@@ -44,9 +59,54 @@ document.addEventListener("DOMContentLoaded", () => {
     subjectBox.innerHTML += `<p>(${String.fromCharCode(97 + i)}) ${sub},</p>`;
   });
 
-  // 🔹 ACCEPTANCE PAGE
-  document.getElementById("acceptName").innerText = name;
-  document.getElementById("acceptPassport").innerText = passport;
-  document.getElementById("acceptCourse").innerText = course;
-
+  // 6️⃣ ACCEPTANCE PAGE
+  setText("acceptName", data.name);
+  setText("acceptPassport", data.passport);
+  setText("acceptCourse", data.course);
 });
+
+// ===== Helper =====
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.innerText = value || "-";
+  }
+}
+
+
+
+// ===============================
+// PDF DOWNLOAD
+// ===============================
+document.getElementById("downloadPDF")?.addEventListener("click", () => {
+
+  const element = document.getElementById("pdfContent");
+
+  if (!element) {
+    alert("PDF content not found");
+    return;
+  }
+
+  // 🔥 IMPORTANT: delay so images render properly
+  setTimeout(() => {
+    const options = {
+      margin: 0,
+      filename: "Offer_Letter.pdf",
+      image: { type: "jpeg", quality: 1 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        // allowTaint: true
+        scrollY: 0
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      }
+    };
+
+    html2pdf().set(options).from(element).save();
+  }, 300); // 👈 delay
+});
+

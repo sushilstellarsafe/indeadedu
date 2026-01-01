@@ -33,6 +33,41 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
+
+
+
+
+
+const user = data.user;
+
+// 🔥 FETCH PROFILE FROM SUPABASE
+const { data: profileData, error: profileError } = await supabase
+  .from("student_profiles")
+  .select("*")
+  .eq("id", user.id)
+  .maybeSingle();
+
+if (profileError) {
+  console.log(profileError);
+  alert("Profile load failed");
+  return;
+}
+
+if (!profileData) {
+  alert("Profile not found. Please complete registration.");
+  return;
+}
+
+// ✅ Save for dashboard
+localStorage.setItem("studentData", JSON.stringify(profileData));
+
+
+
+
+
+
+
+
     /* =========================
        🔥 IMPORTANT FIX 🔥
        studentData को overwrite मत करो

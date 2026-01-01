@@ -1,3 +1,7 @@
+
+
+
+
 const menuBtn = document.querySelector(".menu-btn");
 const authMenu = document.getElementById("authMenu");
 

@@ -198,124 +198,79 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Form submission
-  registrationForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+registrationForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // 🔴 PHOTO MANDATORY CHECK (ADD THIS)
-    if (!photoInput.files || photoInput.files.length === 0) {
-      alert("Please upload your photo before registration");
-      photoInput.click(); // file picker open karega
-      return; // ⛔ form submit yahin stop
-    }
+  // ✅ ALWAYS declare at top
+  let photoSrc = null;
 
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const { data, error } = await supabase.auth.signUp({ email, password });
-
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
-
-
-// ✅ OFFER DATA SAVE (FINAL)
-localStorage.setItem("offer_name", document.getElementById("studentName").value);
-localStorage.setItem("offer_passport", document.getElementById("passportNo").value);
-localStorage.setItem("offer_dob", document.getElementById("dob").value);
-localStorage.setItem("offer_course", courseSelect.options[courseSelect.selectedIndex].text);
-localStorage.setItem("offer_course_duration", courseDuration.value);
-localStorage.setItem("offer_application_id", document.getElementById("applicationId").value);
-localStorage.setItem("offer_commencement", document.getElementById("commencementDate").value);
-
-
-
-
-
-    alert("Signup completed successfully");
-
-
-// PHOTO SRC निकालना (safe way)
-let photoSrc = "";
-const imgTag = photoPreview.querySelector("img");
-if (imgTag) {
-  photoSrc = imgTag.src;
-}
-
-
-// ===== SAVE USER DATA FOR DASHBOARD =====
-const studentData = {
-  name: document.getElementById("studentName").value,
-  email: document.getElementById("email").value,
-  dob: document.getElementById("dob").value,
-  passport: document.getElementById("passportNo").value,
-program: document.getElementById("programType").options[
-  document.getElementById("programType").selectedIndex
-].text,
-
-course: document.getElementById("course").selectedIndex >= 0
-  ? document.getElementById("course").options[
-      document.getElementById("course").selectedIndex
-    ].text
-  : "",
-
-  duration: document.getElementById("courseDuration").value,
-  image: document.querySelector("#photoPreview img")?.src || ""
-};
-
-console.log("STUDENT DATA SAVED 👉", studentData);
-
-localStorage.setItem("studentData", JSON.stringify(studentData));
-localStorage.setItem("isLoggedIn", "true");
-
-
-
-
-// ✅ STEP-5: OFFER LETTER DATA SAVE
-localStorage.setItem(
-  "offer_name",
-  document.getElementById("studentName").value
-);
-
-localStorage.setItem(
-  "offer_passport",
-  document.getElementById("passportNo").value
-);
-
-localStorage.setItem(
-  "offer_dob",
-  document.getElementById("dob").value
-);
-
-localStorage.setItem(
-  "offer_course",
-  courseSelect.options[courseSelect.selectedIndex].text
-);
-
-localStorage.setItem(
-  "offer_duration",
-  courseDuration.value
-);
-
-localStorage.setItem(
-  "offer_application_id",
-  document.getElementById("applicationId").value
-);
-
-localStorage.setItem(
-  "offer_commencement",
-  document.getElementById("commencementDate").value
-);
-
-
-
-
-    // ✅ REDIRECT
-    window.location.href = "index.html";
+  // PHOTO CHECK
+  if (!photoInput.files || photoInput.files.length === 0) {
+    alert("Please upload your photo before registration");
+    photoInput.click();
     return;
+  }
+
+  // PHOTO SRC
+  const imgTag = photoPreview.querySelector("img");
+  if (imgTag) {
+    photoSrc = imgTag.src;
+  }
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!email || !password) {
+    alert("Email & password required");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters");
+    return;
+  }
+
+  // 🔐 AUTH SIGNUP
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password
   });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  const userId = data.user.id;
+
+  // 📦 INSERT PROFILE
+  const { error: profileError } = await supabase
+    .from("student_profiles")
+    .insert({
+      id: userId,
+      name: document.getElementById("studentName").value,
+      email,
+      dob: document.getElementById("dob").value || null,
+      passport: document.getElementById("passportNo").value,
+      program: document.getElementById("programType").options[
+        document.getElementById("programType").selectedIndex
+      ].text,
+      course: document.getElementById("course").options[
+        document.getElementById("course").selectedIndex
+      ].text,
+      duration: document.getElementById("courseDuration").value,
+      image: photoSrc   // ✅ NOW ALWAYS DEFINED
+    });
+
+  if (profileError) {
+    console.log(profileError);
+    alert("Profile save failed");
+    return;
+  }
+
+  alert("Signup completed successfully");
+  window.location.href = "login.html";
+});
 
 
 });
