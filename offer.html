@@ -22,13 +22,19 @@
 
             <div class="content">
                 <!-- Heading CENTER -->
-                <h2 class="letter-heading">
-                    LETTER OF OFFER: <span id="offerCourseHeading"></span>
-                </h2>
+
 
 
                 <!-- Dear RUPENDER -->
                 <p class="dear-line">Dear <strong id="offerDearName"></strong></p>
+
+
+                <h2 class="letter-heading">
+                    <span class="offer-title">
+                        LETTER OF OFFER: <span id="offerCourseHeading"></span>
+                    </span>
+                </h2>
+
 
 
                 <!-- Contact block - ALL RIGHT SIDE -->
@@ -348,8 +354,8 @@
                 <h2 class="letter-heading acceptance-title">LETTER OF ACCEPTANCE</h2>
 
                 <p class="para acceptance-para">
-                    I, <strong id="acceptName">[NAME]</strong>,
-                    NRIC/Passport No: <strong id="acceptPassport">[PASSPORT]</strong>
+                    I, <strong id="acceptNameText">[NAME]</strong>,
+                    NRIC/Passport No: <strong id="acceptPassportText">[PASSPORT]</strong>
                     hereby accept the Letter of Offer made by
                     <strong>Insead College Pte Ltd</strong>
                     for a place in the following course awarded by Insead College Pte Ltd:
@@ -372,7 +378,7 @@
                     <div class="sign-field">
                         <span class="sign-label">Name:</span>
                         <div class="sign-line">
-                            <strong id="acceptName"></strong>
+                            <strong id="acceptNameSign"></strong>
 
                         </div>
                     </div>
@@ -380,7 +386,7 @@
                     <div class="sign-field">
                         <span class="sign-label">NRIC/Passport No:</span>
                         <div class="sign-line">
-                            <strong id="acceptPassport"></strong>
+                            <strong id="acceptPassportSign"></strong>
 
                         </div>
                     </div>
@@ -430,18 +436,18 @@
         </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const supabaseUrl = "https://ljwaezduqvuxhyhcyruy.supabase.co";
-const supabaseKey = "sb_publishable_3I9rJGQ5Pg0NwOxCTRsy7g_p9psbzzF";
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = "https://ljwaezduqvuxhyhcyruy.supabase.co";
+        const supabaseKey = "sb_publishable_3I9rJGQ5Pg0NwOxCTRsy7g_p9psbzzF";
 
-window.supabase = window.supabase.createClient(
-  supabaseUrl,
-  supabaseKey
-);
-</script>
+        window.supabase = window.supabase.createClient(
+            supabaseUrl,
+            supabaseKey
+        );
+    </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <script src="offer.js"></script>
 </body>

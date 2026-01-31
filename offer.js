@@ -60,8 +60,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // 6️⃣ ACCEPTANCE PAGE
-  setText("acceptName", data.name);
-  setText("acceptPassport", data.passport);
+ setText("acceptNameText", data.name);
+setText("acceptNameSign", data.name);
+
+setText("acceptPassportText", data.passport);
+setText("acceptPassportSign", data.passport);
+
   setText("acceptCourse", data.course);
 });
 
@@ -78,35 +82,84 @@ function setText(id, value) {
 // ===============================
 // PDF DOWNLOAD
 // ===============================
-document.getElementById("downloadPDF")?.addEventListener("click", () => {
+// document.getElementById("downloadPDF")?.addEventListener("click", async () => {
+
+//   // 🔥 ONLY grab pages, not whole container
+//   const pages = document.querySelectorAll("#pdfContent .page");
+
+//   if (!pages.length) {
+//     alert("Pages not found");
+//     return;
+//   }
+
+//   // temp wrapper
+//   const wrapper = document.createElement("div");
+
+//   pages.forEach(p => wrapper.appendChild(p.cloneNode(true)));
+
+//   // wait for images
+//   const imgs = wrapper.querySelectorAll("img");
+//   await Promise.all([...imgs].map(img => {
+//     if (img.complete) return;
+//     return new Promise(res => img.onload = img.onerror = res);
+//   }));
+
+//   html2pdf().set({
+//     margin: 0,
+//     filename: "Offer_Letter.pdf",
+
+//     image: { type: "jpeg", quality: 0.98 },
+
+//     html2canvas: {
+//       scale: 2,
+//       useCORS: true
+//     },
+
+//     jsPDF: {
+//       unit: "mm",
+//       format: "a4",
+//       orientation: "portrait"
+//     },
+
+//     pagebreak: {
+//       mode: ["css"],
+//       before: ".page"
+//     }
+
+//   }).from(wrapper).save();
+
+// });
+
+document.getElementById("downloadPDF")?.addEventListener("click", async () => {
 
   const element = document.getElementById("pdfContent");
 
-  if (!element) {
-    alert("PDF content not found");
-    return;
-  }
+  const imgs = element.querySelectorAll("img");
+  await Promise.all([...imgs].map(img => {
+    if (img.complete) return;
+    return new Promise(res => img.onload = img.onerror = res);
+  }));
 
-  // 🔥 IMPORTANT: delay so images render properly
-  setTimeout(() => {
-    const options = {
-      margin: 0,
-      filename: "Offer_Letter.pdf",
-      image: { type: "jpeg", quality: 1 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        // allowTaint: true
-        scrollY: 0
-      },
-      jsPDF: {
-        unit: "mm",
-        format: "a4",
-        orientation: "portrait"
-      }
-    };
+  html2pdf().set({
+    margin: 0,
+    filename: "Offer_Letter.pdf",
 
-    html2pdf().set(options).from(element).save();
-  }, 300); // 👈 delay
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "portrait"
+    },
+
+    pagebreak: {
+      mode: ["avoid-all"]
+    }
+
+  }).from(element).save();
+
 });
 
